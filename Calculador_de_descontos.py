@@ -3,9 +3,12 @@ from Descontos import *
 class Calculador_de_descontos(object):
 
     def calcula(self, orcamento):
-        desconto = Desconto_por_cinco_itens().calcula(orcamento)
-        if desconto == 0:
-            desconto = Desconto_por_mais_de_quinheiros_reais().calcula(orcamento)
+        desconto = Desconto_por_cinco_itens(
+            Desconto_por_mais_de_quinheiros_reais(
+                Sem_desconto()
+            )
+        ).calcula(orcamento)
+
         return desconto
 
 #Testa a classe dentro dela mesma
