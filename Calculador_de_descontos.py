@@ -1,7 +1,7 @@
 class Calculador_de_descontos(object):
 
-    def calcula(orcamento):
-        if orcamento.total_de_items > 5:
+    def calcula(self, orcamento):
+        if orcamento.total_itens > 5:
             return orcamento.valor * 0.1
         elif orcamento.valor > 500:
             return orcamento.valor * 0.07
@@ -16,4 +16,9 @@ if __name__ == "__main__":
     orcamento.adiciona_itens(Item('ITEM -2', 50)) 
     orcamento.adiciona_itens(Item('ITEM -3', 400))
 
-    print (orcamento.valor)
+    print ("Orçamento =", orcamento.valor)
+
+    calculador = Calculador_de_descontos()
+    desconto = calculador.calcula(orcamento)
+
+    print ("Desconto calculado =", desconto)
