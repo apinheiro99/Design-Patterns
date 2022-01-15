@@ -39,4 +39,3 @@ class Test_Calculador(TestCase):
         print("ICPP e IKCV")
         self.assertEqual(calculador.realiza_calculo(orcamento, ICPP()), 25.0)
         self.assertEqual(calculador.realiza_calculo(orcamento, IKCV()), 30.0)
-        # self.assertTrue(True)
