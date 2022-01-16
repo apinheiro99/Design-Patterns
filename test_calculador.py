@@ -32,10 +32,15 @@ class Test_Calculador(TestCase):
         orcamento.adiciona_itens(Item('ITEM -3', 250))
 
         print("ISS e ICMS")
-        ISS = calculador.realiza_calculo(orcamento, ISS())
-        self.assertEqual(ISS, 50.0)
+        self.assertEqual(calculador.realiza_calculo(orcamento, ISS()), 50.0)
         self.assertEqual(calculador.realiza_calculo(orcamento, ICMS()), 30.0)
+
+        print("ISS + ICMS")
+        self.assertEqual(calculador.realiza_calculo(orcamento, ISS(ICMS())), 80.0)
         
         print("ICPP e IKCV")
         self.assertEqual(calculador.realiza_calculo(orcamento, ICPP()), 25.0)
         self.assertEqual(calculador.realiza_calculo(orcamento, IKCV()), 30.0)
+
+        print("ICPP + IKCV")
+        self.assertEqual(calculador.realiza_calculo(orcamento, ICPP(IKCV())), 55.0)
