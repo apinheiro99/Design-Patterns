@@ -2,6 +2,8 @@ from abc import ABCMeta, abstractmethod
 
 class Imposto(object):
 
+    __metaclass__ = ABCMeta
+
     def __init__(self, outro_imposto = None):
         self.__outro_imposto = outro_imposto
 
@@ -16,6 +18,9 @@ class Imposto(object):
         pass
 
 class Template_de_imposto_condicional(Imposto):
+
+    __metaclass__ = ABCMeta
+    
     def calcula(self, orcamento):
         if self.deve_usar_maxima_taxacao(orcamento):
             return self.maxima_taxacao(orcamento) + self.calculo_do_outro_imposto(orcamento)
