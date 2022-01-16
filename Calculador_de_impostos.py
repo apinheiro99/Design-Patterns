@@ -6,6 +6,7 @@ class Calculador_de_impostos (object):
         imposto_calculado = imposto.calcula(orcamento)
 
         print (imposto_calculado)
+        return imposto_calculado
 
 #Testa a classe dentro dela mesma
 if __name__ == "__main__":
