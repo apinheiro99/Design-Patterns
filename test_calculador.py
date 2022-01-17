@@ -44,3 +44,31 @@ class Test_Calculador(TestCase):
 
         print("ICPP + IKCV")
         self.assertEqual(calculador.realiza_calculo(orcamento, ICPP(IKCV())), 55.0)
+
+    def test_orcamento(self):
+        from Orcamento import Orcamento, Item
+
+        orcamento = Orcamento()
+        orcamento.adiciona_itens(Item('ITEM -1', 100))
+        orcamento.adiciona_itens(Item('ITEM -2', 50)) 
+        orcamento.adiciona_itens(Item('ITEM -3', 400))
+
+        print ("Orçamento =", orcamento.valor)
+        self.assertEqual(orcamento.valor, 550.0)
+
+        orcamento.aplica_desconto_extra()
+        print ("Orcamento com desconto =", orcamento.valor)
+        self.assertEqual(orcamento.valor, 539.0)
+
+        #Mudo de estado para aprovado e verifico o novo orcamento
+        orcamento.estado_atual = Orcamento.APROVADO
+        orcamento.aplica_desconto_extra()
+        print ("Orcamento com desconto =", orcamento.valor)
+        self.assertEqual(orcamento.valor, 512.05)
+
+        #Mudo de estado para finalizado e verifico o novo orcamento
+        orcamento.estado_atual = Orcamento.FINALIZADO
+        
+        print ("Orcamento com desconto =", orcamento.valor)
+        with self.assertRaises(Exception):
+            orcamento.aplica_desconto_extra()
