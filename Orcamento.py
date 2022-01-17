@@ -77,14 +77,14 @@ class Orcamento (object):
         self.estado_atual = Em_aprovacao()
         self.__desconto_extra = 0
 
-    def aprova(self):
-        self.estado_atual.aprova(orcamento)
+    def aprova(self,orcamento):
+        orcamento.estado_atual.aprova(orcamento)
 
-    def reprova(self):
-        self.estado_atual.reprova(orcamento)
+    def reprova(self,orcamento):
+        orcamento.estado_atual.reprova(orcamento)
 
-    def finaliza(self):
-        self.estado_atual.finaliza(orcamento)
+    def finaliza(self,orcamento):
+        orcamento.estado_atual.finaliza(orcamento)
 
     def adiciona_desconto_extra(self, desconto):
         self.__desconto_extra += desconto
@@ -137,11 +137,11 @@ if __name__ == "__main__":
     print ("Orcamento com desconto =", orcamento.valor)
 
     #Mudo de estado para aprovado e verifico o novo orcamento
-    orcamento.aprova()
+    orcamento.aprova(orcamento)
     orcamento.aplica_desconto_extra()
     print ("Orcamento com desconto =", orcamento.valor)
 
     #Mudo de estado para finalizado e verifico o novo orcamento
-    orcamento.finaliza()
+    orcamento.finaliza(orcamento)
     orcamento.aplica_desconto_extra()
     print ("Orcamento com desconto =", orcamento.valor)
