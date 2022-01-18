@@ -46,6 +46,7 @@ class Test_Calculador(TestCase):
         self.assertEqual(calculador.realiza_calculo(orcamento, ICPP(IKCV())), 55.0)
 
     def test_orcamento(self):
+
         from Orcamento import Orcamento, Item #, Estado_de_um_orcamento, Em_aprovacao, Aprovado, Reprovado, Finalizado
 
         orcamento = Orcamento()
@@ -75,3 +76,37 @@ class Test_Calculador(TestCase):
             orcamento.aprova(orcamento)
             orcamento.reprova(orcamento)
             orcamento.finaliza(orcamento)
+
+    def test_Classe_Nota_fiscal(self):
+
+        from datetime import date
+        from Nota_fiscal import Item, Nota_fiscal
+        
+        itens = [
+            Item(
+                "Item A",
+                100
+            ),
+            Item(
+                "Item B",
+                200
+            )
+        ]
+
+        #Nomeando variaveis utilizacao do Design Pattern Buider ja do proprio Python (nao importa a ordem dos parametros)
+        nota_fiscal = Nota_fiscal(
+            cnpj = "012345678901234",
+            razao_social = "FHSA Limitada",
+            data_de_emissao = date.today(),
+            detalhes = "",
+            itens = itens
+        )
+
+        print(nota_fiscal)
+
+        self.assertEqual(nota_fiscal.razao_social, "FHSA Limitada")
+        self.assertEqual(nota_fiscal.cnpj, "012345678901234")
+        self.assertEqual(nota_fiscal.itens, "(Item A, 100) (Item B, 200) ")
+        self.assertEqual(nota_fiscal.data_de_emissao, date.today())
+        self.assertEqual(nota_fiscal.detalhes, "")
+    

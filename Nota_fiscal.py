@@ -1,5 +1,4 @@
 from datetime import date
-from time import clock_settime
 
 class Item(object):
 
