@@ -73,7 +73,7 @@ if __name__ == "__main__":
         )
     ]
 
-    #Nomeando variaveis utilizacao do Design Pattern Builder ja do proprio Python (nao importa a ordem dos parametros)
+    # Nomeando variaveis utilizacao do Design Pattern Builder ja do proprio Python (nao importa a ordem dos parametros)
     nota_fiscal = Nota_fiscal(
         cnpj = "012345678901234",
         razao_social = "FHSA Limitada",
