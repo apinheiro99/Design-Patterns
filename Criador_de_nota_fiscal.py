@@ -52,13 +52,3 @@ class Criador_de_nota_fiscal(object):
                             itens = self.__itens,
                             detalhes = self.__detalhes
         )
-
-    def __str__(self):
-        return ("++++++++++++++++++++"  + "\n"
-                    + "Razao social: " + self.__razao_social + "\n"
-                    + "CNPJ: " + self.__cnpj + "\n"
-                    + "Itens: " + self.__itens + "\n"
-                    + "Data de emissao: " + str(self.__data_de_emissao) + "\n"
-                    + "Detalhes: " + self.__detalhes + "\n"
-                    + "++++++++++++++++++++"  + "\n"
-        )

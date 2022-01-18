@@ -93,7 +93,7 @@ class Test_Calculador(TestCase):
             )
         ]
 
-        #Nomeando variaveis utilizacao do Design Pattern Buider ja do proprio Python (nao importa a ordem dos parametros)
+        # Nomeando variaveis utilizacao do Design Pattern Builder ja do proprio Python (nao importa a ordem dos parametros)
         nota_fiscal = Nota_fiscal(
             cnpj = "012345678901234",
             razao_social = "FHSA Limitada",
@@ -109,4 +109,38 @@ class Test_Calculador(TestCase):
         self.assertEqual(nota_fiscal.itens, "(Item A, 100) (Item B, 200) ")
         self.assertEqual(nota_fiscal.data_de_emissao, date.today())
         self.assertEqual(nota_fiscal.detalhes, "")
+
+    def test_Classe_Criador_de_nota_fiscal(self):
+
+        from datetime import date
+        from Nota_fiscal import Item
+        from Criador_de_nota_fiscal import Criador_de_nota_fiscal
+        
+        itens = [
+            Item(
+                "Item A",
+                100
+            ),
+            Item(
+                "Item B",
+                200
+            )
+        ]
+
+        # Utilizando o Design Pattern Builder
+        nota_fiscal_criada_com_builder = (Criador_de_nota_fiscal()
+                                        .com_razao_social("FHSA Limitada")
+                                        .com_cnpj("012345678901234")
+                                        .com_itens(itens)
+                                        .constroi()
+                                        )
+
+        print(nota_fiscal_criada_com_builder)
+
+        self.assertEqual(nota_fiscal_criada_com_builder.razao_social, "FHSA Limitada")
+        self.assertEqual(nota_fiscal_criada_com_builder.cnpj, "012345678901234")
+        self.assertEqual(nota_fiscal_criada_com_builder.itens, "(Item A, 100) (Item B, 200) ")
+        self.assertEqual(nota_fiscal_criada_com_builder.data_de_emissao, date.today())
+        self.assertEqual(nota_fiscal_criada_com_builder.detalhes, "")
+
     

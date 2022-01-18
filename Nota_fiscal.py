@@ -16,7 +16,7 @@ class Item(object):
 
 class Nota_fiscal(object):
 
-    def __init__(self, razao_social, cnpj, itens, data_de_emissao, detalhes):
+    def __init__(self, razao_social, cnpj, itens, data_de_emissao = date.today(), detalhes = ""):
         self.__razao_social = razao_social
         self.__cnpf =cnpj
         self.__data_de_emissao = data_de_emissao
@@ -73,7 +73,7 @@ if __name__ == "__main__":
         )
     ]
 
-    #Nomeando variaveis utilizacao do Design Pattern Builder ja do proprio Python (nao importa a ordem dos parametros)
+    # Nomeando variaveis utilizacao do Design Pattern Builder ja do proprio Python (nao importa a ordem dos parametros)
     nota_fiscal = Nota_fiscal(
         cnpj = "012345678901234",
         razao_social = "FHSA Limitada",
