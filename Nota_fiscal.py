@@ -16,7 +16,7 @@ class Item(object):
 
 class Nota_fiscal(object):
 
-    def __init__(self, razao_social, cnpj, itens, data_de_emissao, detalhes):
+    def __init__(self, razao_social, cnpj, itens, data_de_emissao = date.today(), detalhes = ""):
         self.__razao_social = razao_social
         self.__cnpf =cnpj
         self.__data_de_emissao = data_de_emissao
