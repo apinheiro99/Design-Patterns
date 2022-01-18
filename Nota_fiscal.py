@@ -59,6 +59,8 @@ class Nota_fiscal(object):
         )
 
 if __name__ == "__main__":
+    
+    from Criador_de_nota_fiscal import Criador_de_nota_fiscal
 
     itens = [
         Item(
@@ -71,7 +73,7 @@ if __name__ == "__main__":
         )
     ]
 
-    #Nomeando variaveis utilizacao do Design Pattern Buider ja do proprio Python (nao importa a ordem dos parametros)
+    #Nomeando variaveis utilizacao do Design Pattern Builder ja do proprio Python (nao importa a ordem dos parametros)
     nota_fiscal = Nota_fiscal(
         cnpj = "012345678901234",
         razao_social = "FHSA Limitada",
@@ -81,3 +83,13 @@ if __name__ == "__main__":
     )
 
     print(nota_fiscal)
+
+    # Utilizando o Design Pattern Builder
+    nota_fiscal_criada_com_builder = (Criador_de_nota_fiscal()
+                                    .com_razao_social("FHSA Limitada")
+                                    .com_cnpj("012345678901234")
+                                    .com_itens(itens)
+                                    .constroi()
+                                    )
+
+    print(nota_fiscal_criada_com_builder)
