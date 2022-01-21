@@ -25,6 +25,8 @@ class Nota_fiscal(object):
         self.__detalhes = detalhes
         self.__itens = itens
 
+        self.__observadores = observadores
+
         for observador in observadores:
             observador(self)
 
@@ -50,6 +52,10 @@ class Nota_fiscal(object):
         for item in self.__itens:
             string += "(" + item.descricao + ", " + str(item.valor) +") "
         return string
+
+    @property
+    def observadores(self):
+        return self.__observadores
 
     def __str__(self):
         return ("++++++++++++++++++++"  + "\n"
@@ -86,7 +92,7 @@ if __name__ == "__main__":
         itens = itens,
         observadores =  [imprime, envia_por_email, salva_no_banco, salva_no_banco]
     )
-
+    
     print(nota_fiscal)
 
     # Utilizando o Design Pattern Builder

@@ -143,4 +143,38 @@ class Test_Calculador(TestCase):
         self.assertEqual(nota_fiscal_criada_com_builder.data_de_emissao, date.today())
         self.assertEqual(nota_fiscal_criada_com_builder.detalhes, "")
 
-    
+    def test_Observador(self):
+
+        from datetime import date
+        from Nota_fiscal import Item, Nota_fiscal
+        from Observadores import imprime, envia_por_email, salva_no_banco
+        
+        itens = [
+            Item(
+                "Item A",
+                100
+            ),
+            Item(
+                "Item B",
+                200
+            )
+        ]
+
+        # Nomeando variaveis utilizacao do Design Pattern Builder ja do proprio Python (nao importa a ordem dos parametros)
+        nota_fiscal = Nota_fiscal(
+            cnpj = "012345678901234",
+            razao_social = "FHSA Limitada",
+            data_de_emissao = date.today(),
+            detalhes = "",
+            itens = itens,
+            observadores =  [imprime, envia_por_email, salva_no_banco, salva_no_banco]
+        )
+
+        print(nota_fiscal)
+
+        self.assertEqual(nota_fiscal.razao_social, "FHSA Limitada")
+        self.assertEqual(nota_fiscal.cnpj, "012345678901234")
+        self.assertEqual(nota_fiscal.itens, "(Item A, 100) (Item B, 200) ")
+        self.assertEqual(nota_fiscal.data_de_emissao, date.today())
+        self.assertEqual(nota_fiscal.detalhes, "")
+        self.assertEqual(nota_fiscal.observadores, [imprime, envia_por_email, salva_no_banco, salva_no_banco])
